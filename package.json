@@ -49,5 +49,19 @@
         "babel-plugin-transform-dynamic-import": "2.1.0",
         "commit-and-tag-version": "12.7.3",
         "electron": "45.2.3"
+    },
+    "overrides": {
+        "html-to-docx": {
+            "image-size": "^2.0.4"
+        },
+        "twig": {
+            "minimatch": "^11.0.1"
+        },
+        "readdir-glob": {
+            "minimatch": "^11.0.1"
+        },
+        "js-beautify": {
+            "glob": "^14.0.2"
+        }
     }
 }

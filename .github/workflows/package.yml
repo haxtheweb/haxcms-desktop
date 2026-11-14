@@ -39,13 +39,13 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Checkout haxcms-nodejs main
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           repository: haxtheweb/haxcms-nodejs
           ref: main
           persist-credentials: false
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 24
       - name: Build and pack
@@ -55,7 +55,7 @@ jobs:
           mkdir pack
           npm pack --pack-destination pack
       - name: Upload tarball
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: haxcms-nodejs-main
           path: pack/*.tgz
@@ -89,11 +89,11 @@ jobs:
       HAS_APPLE_CERTIFICATE: ${{ inputs.sign && secrets.APPLE_CERTIFICATE_P12 != '' && secrets.APPLE_SIGNING_IDENTITY != '' }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           persist-credentials: false
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 24
           cache: npm
@@ -109,7 +109,7 @@ jobs:
           ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
       - name: Download haxcms-nodejs main
         if: inputs.haxcms-nodejs == 'main'
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
           name: haxcms-nodejs-main
           path: haxcms-nodejs-main
@@ -177,7 +177,7 @@ jobs:
           spctl --assess --type execute --verbose=2 "$APP"
 
       - name: Upload installers
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: haxtheweb-desktop-${{ matrix.name }}
           path: out/make
