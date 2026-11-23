@@ -29,6 +29,17 @@ Release assets have the same names every release, so links to the latest one don
 
 `latest` only points at published releases that are not pre-releases.
 
+## Verifying a download
+
+Every release carries `SHA256SUMS.txt` and a build provenance attestation for each asset, both written by the release workflow:
+
+```bash
+sha256sum -c SHA256SUMS.txt --ignore-missing
+gh attestation verify haxtheweb-desktop-linux-x64.AppImage --repo haxtheweb/haxcms-desktop
+```
+
+The attestation shows the file was built by `release.yml` in this repository from the tagged commit.
+
 ## Code signing
 
 Signing is switched on by adding repository secrets (Settings > Secrets and variables > Actions). Without them everything still builds, unsigned. Pull request builds are never signed and never see these secrets.
