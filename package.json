@@ -48,7 +48,7 @@
     "@reforged/maker-appimage": "6.0.0",
     "babel-plugin-transform-dynamic-import": "2.1.0",
     "commit-and-tag-version": "13.3.0",
-    "electron": "45.2.3"
+    "electron": "45.4.1"
   },
   "overrides": {
     "html-to-docx": {
