@@ -1,0 +1,30 @@
+# Keeps what the app ships (Electron and its Chromium, haxcms-nodejs) and the
+# pinned GitHub Actions current. Electron is pinned to an exact version in
+# package.json, so without this its security releases are only picked up by
+# hand.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      # build tooling moves together; Electron and haxcms-nodejs get their
+      # own pull requests so they are reviewed and tested on their own
+      build-tooling:
+        patterns:
+          - "@babel/*"
+          - "@electron-forge/*"
+          - "@electron/fuses"
+          - "@reforged/*"
+          - "babel-plugin-*"
+          - "commit-and-tag-version"
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns:
+          - "*"
