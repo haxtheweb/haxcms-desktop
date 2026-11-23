@@ -143,6 +143,7 @@ async function checkFuses(executable) {
     [FuseV1Options.EnableCookieEncryption, FuseState.ENABLE, "encrypts cookies"],
     [FuseV1Options.EnableEmbeddedAsarIntegrityValidation, FuseState.ENABLE, "validates the asar archive"],
     [FuseV1Options.OnlyLoadAppFromAsar, FuseState.ENABLE, "only loads the app from the asar archive"],
+    [FuseV1Options.GrantFileProtocolExtraPrivileges, FuseState.DISABLE, "gives file:// pages no extra privileges"],
   ];
   for (const [fuse, state, label] of expected) {
     assert.strictEqual(wire[fuse], state, `fuse: packaged binary ${label}`);

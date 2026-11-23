@@ -149,6 +149,11 @@ module.exports = {
       [FuseV1Options.EnableCookieEncryption]: true,
       [FuseV1Options.EnableEmbeddedAsarIntegrityValidation]: true,
       [FuseV1Options.OnlyLoadAppFromAsar]: true,
+      // Security: the only file:// pages are the static spinner and the legal
+      // notices; neither needs the extra privileges Electron gives file://
+      // (fetch of other local files, service workers), so a page that ended
+      // up there could not use them either.
+      [FuseV1Options.GrantFileProtocolExtraPrivileges]: false,
     }),
   ],
 };
