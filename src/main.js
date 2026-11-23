@@ -95,11 +95,21 @@ function lockDownSession() {
   const ses = session.defaultSession;
   // Only the local server gets anything beyond the basics; the rest is denied.
   const allowed = ["clipboard-sanitized-write", "fullscreen"];
-  ses.setPermissionRequestHandler((webContents, permission, callback) => {
-    callback(isServerUrl(webContents.getURL()) && allowed.indexOf(permission) !== -1);
+  // Security: decide on the frame that is asking, not only on the window it
+  // sits in. A third-party frame embedded in a HAX page (a video, a remote
+  // site) may go fullscreen, but everything else is for the server's own
+  // origin, so an embed can't inherit the page's permissions.
+  const isAllowed = (webContents, permission, requester) => {
+    if (!webContents || !isServerUrl(webContents.getURL()) || allowed.indexOf(permission) === -1) {
+      return false;
+    }
+    return permission === "fullscreen" || isServerUrl(requester);
+  };
+  ses.setPermissionRequestHandler((webContents, permission, callback, details) => {
+    callback(isAllowed(webContents, permission, details && details.requestingUrl));
   });
-  ses.setPermissionCheckHandler((webContents, permission) => {
-    return !!webContents && isServerUrl(webContents.getURL()) && allowed.indexOf(permission) !== -1;
+  ses.setPermissionCheckHandler((webContents, permission, requestingOrigin) => {
+    return isAllowed(webContents, permission, requestingOrigin);
   });
 }
 
