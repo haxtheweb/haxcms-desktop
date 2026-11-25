@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [26.11.0](https://github.com/haxtheweb/haxcms-desktop/compare/v26.0.0...v26.11.0) (2026-11-25)
+
+### Bug Fixes
+
+* **ci:** pin scorecard-action back to v2.4.3 ([fed240f](https://github.com/haxtheweb/haxcms-desktop/commit/fed240f733cd1663c540330921f082f594e83e15))
+
 ## [26.0.0](https://github.com/haxtheweb/desktop/compare/v25.0.0...v26.0.0) (2026-05-12)
 
 ## [25.0.0](https://github.com/haxtheweb/desktop/compare/v11.0.5...v25.0.0) (2026-01-09)
